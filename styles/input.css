@@ -1,10 +1,27 @@
 @import "tailwindcss";
 
-@theme {
-    --font-display: "Cormorant Garamond", serif;
-    --font-body: "EB Garamond", serif;
-    --font-sans: "Montserrat", sans-serif;
+* {
+    font-family: "Google Sans", sans-serif !important;
+}
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+html,
+body {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar,
+.hide::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}
+
+@theme {
     --color-primary-50: #fef4f2;
     --color-primary-100: #fee7e2;
     --color-primary-200: #fed3ca;
@@ -16,29 +33,9 @@
     --color-primary-800: #98321c;
     --color-primary-900: #7e2f1e;
     --color-primary-950: #44150b;
-
-    --spacing-widest: 0.25em;
-
-    --color-parchment: #f5f0e8;
-    --color-ink: #1a1410;
-    --color-sepia: #8b6f47;
-    --color-gold: #c9a84c;
-    --color-mist: #e8e0d4;
-    --color-deep: #2c2018;
 }
 html {
     scroll-behavior: smooth;
-}
-
-/* Noise texture overlay */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.4;
 }
 
 /* Nav link hover underline */
@@ -51,9 +48,10 @@ body::before {
     bottom: -2px;
     left: 0;
     width: 0;
-    height: 1px;
-    @apply bg-primary-500;
+    height: 3px;
+    @apply bg-primary-500 text-base;
     transition: width 0.3s ease;
+    border-radius: 10px;
 }
 .nav-link:hover::after {
     width: 100%;
@@ -68,16 +66,4 @@ body::before {
 /* Blockquote pull */
 .pull-quote {
     border-left: 3px solid #ee6345;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-    width: 5px;
-}
-::-webkit-scrollbar-track {
-    background: #f5f0e8;
-}
-::-webkit-scrollbar-thumb {
-    background: #ee6345;
-    border-radius: 2px;
 }
